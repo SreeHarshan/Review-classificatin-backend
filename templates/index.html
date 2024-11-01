@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Classification</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Container styling */
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            background: #fff;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+            animation: slideDown 0.6s ease;
+        }
+
+        label {
+            font-size: 1.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #666;
+        }
+
+        /* Form styling */
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2563eb;
+        }
+
+        input[type="submit"]:active {
+            transform: scale(0.98);
+        }
+
+        /* Result styling */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f1f5f9;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result h2 {
+            font-size: 1.4em;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .result p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Review Classification</h1>
+        
+        <form method="post">
+            <label for="query">Enter Review Text:</label>
+            <textarea id="query" name="query" rows="4" cols="50" placeholder="Type your review here...">{{ query }}</textarea>
+            <input type="submit" value="Classify">
+        </form>
+        
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Prediction Result:</h2>
+            <p>Predicted Value: {{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
