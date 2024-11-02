@@ -38,6 +38,7 @@ Reviews are classified as Computer Generated or Human written. Uses RoBERTa mode
     ```bash
     docker run --network host -p 8000:8000 -v /tmp:/tmp -v /home:/home <docker-image-name>
     ```
+    
 **Note**
 - The server runs on port 8000 and ip of 0.0.0.0, if you want to change the port or ip of server you can pass the port, ip as an env variable to docker by adding `docker run -e PORT=xxxx HOST=xxx.xxx.x.x ...`.
 - The first prediction will take time as it has to load the RoBERTa model.
