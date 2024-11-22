@@ -24,6 +24,6 @@ def predict(query):
         probs = logits.softmax(dim=-1)
 
     fake, real = probs.detach().cpu().flatten().numpy().tolist()
-    print(fake,real)
-
-    return "Real" if real>fake else "Fake"
+    confidence = max(fake, real) * 100
+    # print(f"Fake: {fake}, Real: {real}, Confidence: {confidence:.2f}%")
+    return "Real" if real > fake else "Fake", confidence
