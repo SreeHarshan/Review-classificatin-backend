@@ -4,11 +4,13 @@ import pandas as pd
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 
-model_name = "roberta-base"
-model = RobertaForSequenceClassification.from_pretrained(model_name)
-tokenizer = RobertaTokenizer.from_pretrained(model_name)
+checkpoint = "detector-base.pt"
+data = torch.load(checkpoint, map_location=device, weights_only=True)
 
-# model.load_state_dict(data['model_state_dict'],strict=False)
+model_name = "roberta-base"
+tokenizer = RobertaTokenizer.from_pretrained(model_name)
+model = RobertaForSequenceClassification.from_pretrained(model_name)
+model.load_state_dict(data['model_state_dict'],strict=False)
 model.to(device)
 
 def predict(query):

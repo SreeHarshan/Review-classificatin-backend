@@ -10,7 +10,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def classify():
     if request.method == "POST":
         query = request.form.get("query")
-        output = clf.predict(query)  
+        if(len(query)>150):
+            output = clf.predict(query)  
+        else:
+            output = None
         return render_template("index.html", query=query, prediction=output)
     return render_template("index.html", query=None, prediction=None)
 
