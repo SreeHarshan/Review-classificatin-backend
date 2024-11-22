@@ -134,45 +134,21 @@
   </head>
   <body>
     <div class="container">
-      <h1>Review Classification</h1>
-
-      <form method="post">
-        <label for="query">Enter Review Text:</label>
-        <textarea
-          id="query"
-          name="query"
-          rows="4"
-          cols="50"
-          placeholder="Type your review here..."
-        >
-{{ query }}</textarea
-        >
-        <input type="submit" value="Classify" />
-      </form>
-
-      {% if prediction is not none %}
-      <div class="result">
-        <h2>Prediction Result:</h2>
-        <p>Predicted Value: {{ prediction }}</p>
-      </div>
-      {% elif query is not none and query|length < 150 %}
-      <div class="result" style="border-color: #e63946; color: #e63946">
-        <h2>Input Error:</h2>
-        <p>
-          Your input review should be at least 150 characters long. Please enter
-          more details in your review.
-        </p>
-      </div>
-      {% endif %} 
-
-      <div class="result">
-        <h2>Info</h2>
-        <p>
-          The RoBERTa model is taken and trained using custom dataset. The
-          dataset comprises of reviews from Amazon dataset and reviews generated
-          from GPT-2.
-        </p>
-      </div>
+        <h1>Review Classification</h1>
+        
+        <form method="post">
+            <label for="query">Enter Review Text:</label>
+            <textarea id="query" name="query" rows="4" cols="50" placeholder="Type your review here...">{{ query }}</textarea>
+            <input type="submit" value="Classify">
+        </form>
+        
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Prediction Result:</h2>
+            <p>Predicted Value: {{ prediction }}</p>
+            <p>Prediction Confidence: {{ confidence }}%</p>
+        </div>
+        {% endif %}
     </div>
   </body>
 </html>
